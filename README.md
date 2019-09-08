@@ -10,7 +10,7 @@ Will need python 3 installed, along with the following packages: selenium, numpy
 
 Built With
 ----------
-Python 3 and All of the packages listed above
+Python 3 and all of the packages listed above
 
 Authors
 -------
