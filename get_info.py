@@ -8,6 +8,7 @@ from numpy import arange,array,ones
 from scipy import stats
 from pylab import figure, axes, pie, title, show
 
+#dictionary to switch between team code and team name, thanks wikipedia
 teamCodes = {'AFM' : 'Atlanta Flames',
 'ANA' : 'Anaheim Ducks',
 'ARI' :'Arizona Coyotes',
@@ -67,7 +68,8 @@ teamCodes = {'AFM' : 'Atlanta Flames',
 'WSH' : 'Washington Capitals'}
 
 
-
+# set to the same file path as scraper.py to access the information gathered
+file_path = ""
             
 
 def team_player_info(team, year):
@@ -80,7 +82,7 @@ def team_player_info(team, year):
     end_str = str(year + 1)
     
     ## Change to where all of the player info is stored
-    df = pd.read_csv(r"C:\Users\Jabra\Python\players\players_" + start_str + "" + end_str + ".csv", index_col=[0])
+    df = pd.read_csv(file_path + start_str + "" + end_str + ".csv", index_col=[0])
     
     number_rows, number_cols = df.shape
     if ((team == df['Team']).any()):
@@ -102,7 +104,7 @@ def team_info(team, year):
     end_str = str(year+1)
     
     ## Change to where all of the team info is stored
-    df = pd.read_csv(r'C:\Users\Jabra\Python\teams\teams_' + start_str + '' + end_str + '.csv')
+    df = pd.read_csv(file_path + start_str + '' + end_str + '.csv')
     if((team == df['Team']).any()):
         row_index = df[df['Team']==team].index.item()
         info = df.iloc[row_index][9]
@@ -118,7 +120,7 @@ def all_team_standings(year):
     end_str = str(year+1)
     
     ## Change to where all of the team info is stored
-    df = pd.read_csv(r'C:\Users\Jabra\Python\teams\teams_' + start_str + '' + end_str + '.csv')
+    df = pd.read_csv(file_path + start_str + '' + end_str + '.csv')
     df.set_index('Index', inplace=True)
     df = df.drop(columns = ['Unnamed: 0', 'Season', 'GP', 'W', 'L', 'T', 'OT', 'ROW', 'P%', 'GF', 'GA', 'S/O Win', 'GF/GP', 'GA/GP', 'PP%', 'PK%', 'Shots/GP', 'SA/GP', 'FOW%'])
     return df
@@ -188,7 +190,7 @@ def deviation_graphs(start_year, end_year):
             plt.text(16, 105, display_text,fontsize=10 )
 
         #Change to where you wish to save the files
-        plt.savefig(r"C:\Users\Jabra\Python\graphs_gp_cutoff\deviation_" + year_str + ".png")
+        plt.savefig(file_path + year_str + ".png")
         plt.close()
 
 def all_years_deviation_graphs(start_year, end_year):
@@ -222,7 +224,7 @@ def all_years_deviation_graphs(start_year, end_year):
     plt.text(4, 105, display_text,fontsize=10 )
     
     # Change to where you wish to save the file
-    plt.savefig(r"C:\Users\Jabra\Python\graphs_20GP_P_deviation\totalG.png")
+    plt.savefig(file_path)
     plt.close()
     
 def topx_percent(year, num_top_plyrs, stat, removeOutliers = True, removeDefense = True):
@@ -296,8 +298,7 @@ def all_years_percent_graphs(start_year, end_year):
     plt.text(150, 105, display_text,fontsize=10 )
 
     # Set to where you wish to save the graph 
-    #plt.savefig(r"C:\Users\Jabra\Python\graphs_points\total_percent_top_new" + str(num_top_plyrs) + ".png")
-    plt.savefig(r"C:\Users\Jabra\Python\graphs_points\totalGoals.png")
+    plt.savefig(file_path)
     plt.close()
     
 
@@ -305,5 +306,3 @@ def all_years_percent_graphs(start_year, end_year):
 pd.set_option('display.max_columns', 30)
 all_years_deviation_graphs(2005, 2018)
 #all_years_percent_graphs(2005,2018)
-
-##need to try deviation of goal% to account for the effect of overall goals
