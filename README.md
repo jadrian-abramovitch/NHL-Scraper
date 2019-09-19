@@ -8,6 +8,8 @@ Getting Started
 ---------------
 If you wish to run the code yourself, you will need python 3 installed, along with the following packages: selenium, numpy, pandas, math, re, matplotlib, scipy, and pylab.
 
+Example Data has been included in the repository to show what the results of the web scraper are.
+
 
 Built With
 ----------
