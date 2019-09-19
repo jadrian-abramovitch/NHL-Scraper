@@ -1,3 +1,8 @@
+## To use this file properly, you should have already run scraper.py and collected data onto your local workspace.
+## This file can be used to analyze the data in multiple ways, and an explanation of the function calls is at the end of the file
+## Further explanation to why some choices in the analysis were made are explained in NHL.docx
+
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -302,7 +307,13 @@ def all_years_percent_graphs(start_year, end_year):
     plt.close()
     
 
-##print(all_team_standings(2015))
+##this is to allow pandas to show all columns properly
 pd.set_option('display.max_columns', 30)
-all_years_deviation_graphs(2005, 2018)
+
+## The first option is to get a graph of the percent breakdown of the each team's scoring
+## The first argument is the first year to include, and the second input is the last year to include (inclusive)
 #all_years_percent_graphs(2005,2018)
+
+## The second option is to get a graph of the deviation of each team's scoring percentage
+all_years_deviation_graphs(2005, 2018)
+
