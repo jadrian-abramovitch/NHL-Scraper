@@ -5,6 +5,9 @@ import math
 import re
 
 
+## set file path where to save all data, E.g. 'C:\Documents\foldername'
+file_path = ""
+
 
 def click_next():
     ## click button to go to the next page of players
@@ -110,7 +113,7 @@ def all_teams_all_seasons(number_seasons):
         print(frame)
 
         ##set to your xpath where you want to save all of the files
-        frame.to_csv(r'C:\Users\Jabra\Python\teams\teams_' + start_str + '' + end_str + '.csv')
+        frame.to_csv(file_path + start_str + '' + end_str + '.csv')
 
 
 def all_players_all_seasons(number_seasons):
@@ -128,7 +131,7 @@ def all_players_all_seasons(number_seasons):
         print(frame)
 
         ##set to your xpath where you want to save all of the files
-        frame.to_csv(r'C:\Users\Jabra\Python\players\players_' + start_str + '' + end_str + '.csv')
+        frame.to_csv(file_path + start_str + '' + end_str + '.csv')
 
 browser = webdriver.Chrome()
 all_teams_all_seasons(102)
